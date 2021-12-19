@@ -1,5 +1,5 @@
 <?php
-
+	// adminpage file
 	require 'database.php';
 	
 	// test database connection and check if table exists
