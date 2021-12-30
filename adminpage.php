@@ -29,8 +29,8 @@
 	function getVar($var) {
 		// Get a variable passed with POST or GET in a safe way
 		// Returns NULL if the variable does not exist
-		if (isset($_POST[$var])) return get_magic_quotes_gpc() ? stripslashes($_POST[$var]) : $_POST[$var];
-		else if (isset($_GET[$var])) return get_magic_quotes_gpc() ? stripslashes($_GET[$var]) : $_GET[$var];
+		if (isset($_POST[$var])) return stripslashes($_POST[$var]);
+		else if (isset($_GET[$var])) return stripslashes($_GET[$var]);
 		else return NULL;
 	}	
 	
@@ -279,16 +279,16 @@
 	<?php
 		if ($action!="Refresh" && $action!="Delete") {
 	?>
-	first_name = "<?php print htmlentities($first_name); ?>";
-	last_name = "<?php print htmlentities($last_name); ?>";
-	email = "<?php print htmlentities($email); ?>";
-	address = "<?php print htmlentities($address); ?>";
-	mobile = "<?php print htmlentities($mobile); ?>";
-	jQuery("#first_name").val(decodeEntities(first_name));
-	jQuery("#last_name").val(decodeEntities(last_name));
-	jQuery("#email").val(decodeEntities(email));
-	jQuery("#address").val(decodeEntities(address));	
-	jQuery("#mobile").val(decodeEntities(mobile));
+	first_name = <?php print json_encode($first_name); ?>;
+	last_name = <?php print json_encode($last_name); ?>;
+	email = <?php print json_encode($email); ?>;
+	address = <?php print json_encode($address); ?>;
+	mobile = <?php print json_encode($mobile); ?>;
+	jQuery("#first_name").val(first_name);
+	jQuery("#last_name").val(last_name);
+	jQuery("#email").val(email);
+	jQuery("#address").val(address);	
+	jQuery("#mobile").val(mobile);
 	<?php
 		} else if ($action=="Delete") {
 	?>
